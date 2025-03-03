@@ -1,0 +1,74 @@
+// src/assets/styles/_variables.scss
+// 陶喆主题色系
+$primary-color: #0d1b2a; // 深蓝基调
+$secondary-color: #1b263b; // 夜间蓝
+// $accent-color: #e63946; // 活力红 (取自《黑色柳丁》专辑色调)
+$accent-color: #2196f3;
+$golden-tinge: #d4a017; // 金色点缀
+$light-grey: #f1faee; // 浅灰色背景
+//蓝专题色系
+// 颜色系统    
+$background-dark: #1a1a1a;
+$text-primary: rgba(white, 0.9);
+$accent-primary: #ff6b6b;
+$accent-secondary: #4ecdc4;
+// 文字颜色
+// $text-primary: rgba(255, 255, 255, 0.9);
+// $text-secondary: #8d99ae;
+
+// 特殊效果
+$neon-effect: 0 0 10px rgba(230, 57, 70, 0.5);
+$vinyl-texture: linear-gradient(45deg,
+                rgba(0, 0, 0, 0.1) 25%,
+                transparent 25%,
+                transparent 75%,
+                rgba(0, 0, 0, 0.1) 75%);
+
+// 响应式断点
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+
+//淡灰色边框
+$border-color: #d8e3e7;
+
+
+
+
+:root {
+        // 默认主题变量
+        --color-primary: #2196f3;
+        --color-secondary: #ff9800;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f5f5f5;
+        --text-primary: #212121;
+        --text-secondary: #757575;
+}
+$mobile-breakpoint: 768px;
+/* 基础字号系统 */
+:root {
+        // PC端字号
+        --pc-font-size-title: 32px;
+        --pc-font-size-subtitle: 24px;
+        --pc-font-size-body: 16px;
+
+        // 移动端字号
+        --mobile-font-size-title: 24px;
+        --mobile-font-size-subtitle: 20px;
+        --mobile-font-size-body: 14px;
+
+        // 响应式字号（默认PC端）
+        --dynamic-title: var(--pc-font-size-title);
+        --dynamic-subtitle: var(--pc-font-size-subtitle);
+        --dynamic-body: var(--pc-font-size-body);
+}
+
+/* 媒体查询覆盖移动端变量 */
+@media (max-width: $mobile-breakpoint) {
+        :root {
+                --dynamic-title: var(--mobile-font-size-title);
+                --dynamic-subtitle: var(--mobile-font-size-subtitle);
+                --dynamic-body: var(--mobile-font-size-body);
+        }
+}
+
+$mobile-breakpoint: 768px;

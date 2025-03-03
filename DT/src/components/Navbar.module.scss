@@ -1,0 +1,282 @@
+// Navbar.module.scss
+// @use "@/styles/variables" as *;
+
+:global {
+
+    // 清除所有默认样式
+    .ant-layout-header {
+        all: unset !important; // 重置所有 CSS 属性
+        // display: flex !important; // 按需声明必要属性
+        justify-content: space-between;
+        // padding: 0 2rem !important;
+        height: 64px !important;
+        line-height: normal !important;
+        // background: rgba($background-dark, 0.95) !important;
+        border-radius: 0%;
+    }
+
+    // 清除子元素继承样式
+    .ant-layout-header>* {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 64px;
+    background: rgba($background-dark, 0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1000;
+
+    // Logo 部分
+    .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translateX(5px);
+        }
+
+        // 图标
+        &Icon {
+            font-size: 2rem;
+            margin-right: 0.8rem;
+        }
+
+        // 文字
+        &Text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, $accent-primary, $accent-secondary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+
+    // 导航内容容器
+    .navContent {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    // 导航链接
+    .navLinks {
+        display: flex;
+        gap: 1.5rem;
+
+        .navLink {
+            color: $text-primary;
+            text-decoration: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+
+            // 下划线动画
+            &::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 0;
+                height: 2px;
+                background: $accent-primary;
+                transition: all 0.3s;
+            }
+
+            &:hover {
+                background: rgba(white, 0.05);
+
+                &::after {
+                    width: 100%;
+                    left: 0;
+                }
+            }
+
+            // 激活状态（对应 React 的 active 类名）
+            &.active {
+                color: $accent-primary;
+
+                &::after {
+                    width: 100%;
+                    left: 0;
+                }
+            }
+
+            // 链接图标
+            .linkIcon {
+                margin-right: 0.6rem;
+                font-size: 1.1em;
+            }
+        }
+    }
+
+    // 艺术家下拉菜单
+    .artistDropdown {
+        position: relative;
+
+        // 下拉触发按钮
+        .dropdownTrigger {
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 1.2rem;
+            background: rgba(white, 0.08);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(white, 0.1);
+
+            &:hover {
+                background: rgba(white, 0.12);
+                border-color: rgba(white, 0.2);
+            }
+
+            // 图标
+            .triggerIcon {
+                font-size: 1.2rem;
+                margin-right: 0.8rem;
+            }
+
+            // 文字
+            .triggerText {
+                color: $text-primary;
+                font-weight: 500;
+            }
+
+            // 箭头
+            .arrow {
+                margin-left: 0.8rem;
+                font-size: 0.7rem;
+                transition: transform 0.3s;
+                color: rgba(white, 0.6);
+
+                // 展开状态
+                &.open {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+        // 下拉菜单
+        .dropdownMenu {
+            position: absolute;
+            right: 0;
+            top: calc(100% + 8px);
+            background: $background-dark;
+            border-radius: 8px;
+            padding: 0.5rem;
+            min-width: 280px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(white, 0.1);
+
+            // 过渡动画（适配 React Transition Group）
+            &Enter {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            &EnterActive {
+                opacity: 1;
+                transform: translateY(0);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            &Exit {
+                opacity: 1;
+            }
+
+            &ExitActive {
+                opacity: 0;
+                transform: translateY(-10px);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            // 菜单项
+            .dropdownItem {
+                display: flex;
+                align-items: center;
+                padding: 0.8rem;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.2s;
+
+                &:hover {
+                    background: rgba(white, 0.05);
+                }
+
+                // 艺术家头像
+                .artistAvatar {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    margin-right: 1rem;
+                    object-fit: cover;
+                }
+
+                // 艺术家信息
+                .artistInfo {
+                    .artistName {
+                        color: $text-primary;
+                        font-weight: 500;
+                    }
+
+                    .artistAlbums {
+                        color: rgba(white, 0.6);
+                        font-size: 0.9em;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 移动端适配
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 1rem;
+        height: 56px;
+
+        // 隐藏 logo 文字
+        .logoText {
+            display: none;
+        }
+
+        .navContent {
+            gap: 1rem;
+        }
+
+        // 隐藏导航链接
+        .navLinks {
+            display: none;
+        }
+
+        // 调整下拉触发按钮
+        .artistDropdown {
+            .dropdownTrigger {
+                padding: 0.5rem;
+
+                // 隐藏文字
+                .triggerText {
+                    display: none;
+                }
+            }
+
+            // 调整菜单宽度
+            .dropdownMenu {
+                min-width: 200px;
+            }
+        }
+    }
+}

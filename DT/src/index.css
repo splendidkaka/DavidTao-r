@@ -1,0 +1,40 @@
+/* 全局样式 */
+html {
+  box-sizing: border-box;
+  /* 统一盒模型计算方式 */
+  width: 100vw;
+  /* 视口全宽 */
+  min-height: 100vh;
+  /* 最小高度撑满屏幕 */
+  overflow-x: hidden;
+  /* 防止横向滚动 */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  /* 继承盒模型设置 */
+}
+
+body {
+  margin: 0;
+  /* 清除默认边距 */
+  padding: 0;
+  /* 清除默认内边距 */
+  width: 100%;
+  /* 继承html宽度 */
+  min-height: 100vh;
+  /* 最小高度撑满屏幕 */
+}
+
+#app {
+  width: 100%;
+  /* 继承父级全宽 */
+  min-height: 100vh;
+  /* 最小高度撑满屏幕 */
+  display: flex;
+  /* 启用弹性布局 */
+  flex-direction: column;
+  /* 垂直排列子元素 */
+}

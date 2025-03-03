@@ -1,0 +1,23 @@
+// 歌词高亮动画
+@keyframes lyric-highlight {
+    from {
+        opacity: 0.5;
+        transform: translateY(0.5rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// 旋转动画
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.rotate-icon {
+    animation: spin 2s linear infinite;
+}

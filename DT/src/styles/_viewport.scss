@@ -1,0 +1,30 @@
+// src/assets/scss/_viewport.scss
+
+/* 移动端基准方案 */
+@mixin mobile-viewport {
+    @media (max-width: 768px) {
+        /* 1px = 0.2667vw (基于375设计稿) */
+        @content;
+    }
+}
+
+/* PC端基准方案 */
+@mixin pc-viewport {
+    @media (min-width: 769px) {
+        /* 1px = 0.052vw (基于1920设计稿) */
+        @content;
+    }
+}
+
+/* 通用适配方案 */
+@function vw($px) {
+    @return ($px / 375) * 100vw;
+}
+
+@function vh($px) {
+    @return ($px / 667) * 100vh;
+}
+
+@function vmin($px) {
+    @return ($px / 1920) * 100vmin;
+}

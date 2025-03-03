@@ -1,0 +1,32 @@
+// 响应式媒体查询
+@mixin respond-to($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+}
+
+// 弹性布局快捷方式
+@mixin flex-center($direction: row) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: center;
+    justify-content: center;
+}
+
+// 文字截断
+@mixin text-ellipsis($lines: 1) {
+    overflow: hidden;
+
+    @if $lines >1 {
+        display: -webkit-box;
+        -webkit-line-clamp: $lines;
+        -webkit-box-orient: vertical;
+    }
+
+    @else {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
