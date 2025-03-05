@@ -1,10 +1,11 @@
 // src/layouts/AppLayout.tsx
-import { Flex, Layout } from 'antd';
+import { Layout } from 'antd';
 import NavBar from '@/components/NavBar';
-const { Header, Footer, Sider, Content } = Layout;
-// import { ConfigProvider } from 'antd';
+import PlayerControls from '@/components/PlayControls';
+import LyricOverlay from '@/components/LyricOverlay';
+import styles from './AppLayout.module.scss';
 
-
+const { Header, Footer, Content } = Layout;
 const AppLayout: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
     return (
         <Layout style={{ minHeight: '100vh' }}>
@@ -12,12 +13,13 @@ const AppLayout: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
             <Header><NavBar /></Header>
 
             {/* 动态内容区域 */}
-            <Content>{children}</Content>
+            <Content className={styles.content}>{children}</Content>
 
             {/* 固定播放器 */}
-            {/* <Footer style={{ position: 'fixed', ... }}>
-                <MiniPlayer />
-            </Footer> */}
+            <Footer>
+                <PlayerControls />
+                <LyricOverlay />
+            </Footer>
         </Layout>
     );
 };

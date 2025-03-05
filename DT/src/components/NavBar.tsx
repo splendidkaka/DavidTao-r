@@ -30,7 +30,7 @@ export default function Navbar() {
 
     useEffect(() => {
         window.addEventListener('click', handleClickOutside);
-        return () => window.removeEventListener('click', handleClickOutside);
+        return () => window.removeEventListener('click', handleClickOutside); //清理函数 
     }, []);
 
     return (
@@ -66,7 +66,7 @@ export default function Navbar() {
                             }`}>▼</span>
                     </div>
 
-                    {isDropdownOpen && (
+                    {isDropdownOpen && (   //d等价于v-if
                         <div className={styles.dropdownMenu}>
                             {artists.map(artist => (
                                 <div

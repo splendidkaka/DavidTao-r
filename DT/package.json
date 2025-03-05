@@ -14,10 +14,12 @@
     "@iconify/json": "^2.2.312",
     "@iconify/react": "^5.2.0",
     "@types/react-router-dom": "^5.3.3",
+    "@types/react-transition-group": "^4.4.12",
     "antd": "^5.24.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.2.0",
+    "react-transition-group": "^4.4.5",
     "sass-embedded": "^1.85.1",
     "scss": "^0.2.4",
     "zustand": "^5.0.3"

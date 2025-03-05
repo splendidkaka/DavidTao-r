@@ -39,7 +39,7 @@ export default function HomeView() {
 
     // 生命周期处理
     useLayoutEffect(() => {
-        musicStore.initMockData();
+        // musicStore.initMockData();
         const loadData = async () => {
             // const playlists = await musicStore.getFeaturedPlaylists();
             // setFeaturedPlaylists(playlists);
@@ -56,7 +56,9 @@ export default function HomeView() {
         const ua = navigator.userAgent;
         const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         const smallScreen = window.matchMedia('(max-width: 768px)').matches;
+        console.log('(/Mobile|Android|iPhone/i.test(ua) && isTouch)',(/Mobile|Android|iPhone/i.test(ua) && isTouch));
         setIsMobile((/Mobile|Android|iPhone/i.test(ua) && isTouch) || (smallScreen && isTouch));
+        console.log('isMobile',isMobile);
     };
 
     // 专辑选择逻辑
@@ -109,45 +111,46 @@ export default function HomeView() {
 
     return (
         <div className={`${styles.homeView} ${isMobile ? styles.mobileView : ''}`}>
-            {/* 主题设置面板 */}
-            <div className={styles.themeSettings}>
-                <button
-                    className={styles.themeTrigger}
-                    onClick={() => setShowThemeSettings(!showThemeSettings)}
-                    title="主题设置"
-                >
-                    <SvgIcon icon="mdi:palette" size={24} />
-                </button>
+                {/* 主题设置面板 */}
+                {/* <div>{isMobile? 1 :2}</div> */}
+                <div className={styles.themeSettings}>
+                    <button
+                        className={styles.themeTrigger}
+                        onClick={() => setShowThemeSettings(!showThemeSettings)}
+                        title="主题设置"
+                    >
+                        <SvgIcon icon="mdi:palette" size={24} />
+                    </button>
 
-                {showThemeSettings && (
-                    <div className={styles.themePanel}>
-                        <h4>主题效果设置</h4>
-                        <div className={styles.animationOptions}>
-                            {themeStore.themeOptions.map(option => (
-                                <label
-                                    key={option.value}
-                                    className={themeStore.currentTheme === option.value ? styles.active : ''}
-                                >
-                                    <input
-                                        type="radio"
-                                        value={option.value}
-                                        checked={themeStore.currentTheme === option.value}
-                                        onChange={() => themeStore.setTheme(option.value)}
-                                    />
-                                    <span className={styles.radioIndicator} />
-                                    <span className={styles.labelText}>{option.label}</span>
-                                </label>
-                            ))}
+                    {showThemeSettings && (
+                        <div className={styles.themePanel}>
+                            <h4>主题效果设置</h4>
+                            <div className={styles.animationOptions}>
+                                {themeStore.themeOptions.map(option => (
+                                    <label
+                                        key={option.value}
+                                        className={themeStore.currentTheme === option.value ? styles.active : ''}
+                                    >
+                                        <input
+                                            type="radio"
+                                            value={option.value}
+                                            checked={themeStore.currentTheme === option.value}
+                                            onChange={() => themeStore.setTheme(option.value)}
+                                        />
+                                        <span className={styles.radioIndicator} />
+                                        <span className={styles.labelText}>{option.label}</span>
+                                    </label>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                )}
-            </div>
+                    )}
+                </div>
 
-            {/* 动画设置面板 */}
-            <div className={`${styles.animationSettings} ${showSettings ? styles.expanded : ''}`}>
-                <button
-                    className={styles.settingsTrigger}
-                    onClick={() => setShowSettings(!showSettings)}
+                {/* 动画设置面板 */}
+                <div className={`${styles.animationSettings} ${showSettings ? styles.expanded : ''}`}>
+                    <button
+                        className={styles.settingsTrigger}
+                        onClick={() => setShowSettings(!showSettings)}
                     title={showSettings ? '隐藏设置' : '显示设置'}
                 >
                     <SvgIcon icon="mdi:animation" size={24} />
@@ -185,7 +188,7 @@ export default function HomeView() {
 
             {/* 专辑滚动区域 */}
             <section className={styles.featuredPlaylists}>
-                <h2>精选专辑</h2>
+                <h2 style={{color:'var(--text-primary)'}}>精选专辑</h2>
                 <div className={styles.playlistScrollContainer}>
                     <button
                         className={`${styles.scrollArrow} ${styles.left} ${showLeftArrow ? styles.visible : ''}`}
